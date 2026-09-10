@@ -1,0 +1,6296 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "نظام إدارة البئر – بئر محمد أحمد مطير API",
+    "description": "API documentation for the **نظام إدارة البئر – بئر محمد أحمد مطير** application.\n\n**Authentication:** Most endpoints require the `api_key` header. If using Swagger UI, click the **Authorize** button at the top of the page and enter your API key before trying any endpoint.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://bir-mutair.base44.app/api",
+      "description": "API server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/entities/AuditLog": {
+      "get": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "List AuditLog records",
+        "operationId": "list_AuditLog",
+        "description": "Retrieve a list of AuditLog records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Create a AuditLog record",
+        "operationId": "create_AuditLog",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditLog"
+              },
+              "example": {
+                "user_name": "Example user_name",
+                "action": "Example action"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Delete multiple AuditLog records",
+        "operationId": "delete_many_AuditLog",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "user_name": "Example user_name"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/AuditLog/bulk": {
+      "post": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Bulk create AuditLog records",
+        "operationId": "bulk_create_AuditLog",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AuditLog"
+                }
+              },
+              "example": [
+                {
+                  "user_name": "Example user_name",
+                  "action": "Example action"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Bulk update AuditLog records",
+        "operationId": "bulk_update_AuditLog",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AuditLog"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "user_name": "Example user_name",
+                  "action": "Example action"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/AuditLog/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Update many AuditLog records by query",
+        "operationId": "update_many_AuditLog",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "user_name": "Example user_name"
+                },
+                "data": {
+                  "$set": {
+                    "user_name": "Example user_name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/AuditLog/{AuditLog_id}": {
+      "get": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Get a AuditLog record by ID",
+        "operationId": "get_AuditLog",
+        "parameters": [
+          {
+            "name": "AuditLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Update a AuditLog record",
+        "operationId": "update_AuditLog",
+        "parameters": [
+          {
+            "name": "AuditLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Delete a AuditLog record",
+        "operationId": "delete_AuditLog",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "AuditLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/AuditLog/{AuditLog_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - AuditLog"
+        ],
+        "summary": "Restore a deleted AuditLog record",
+        "operationId": "restore_AuditLog",
+        "parameters": [
+          {
+            "name": "AuditLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerFilling": {
+      "get": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "List TankerFilling records",
+        "operationId": "list_TankerFilling",
+        "description": "Retrieve a list of TankerFilling records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerFilling"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Create a TankerFilling record",
+        "operationId": "create_TankerFilling",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TankerFilling"
+              },
+              "example": {
+                "owner_id": "Example owner_id",
+                "filling_type": "full",
+                "value": 0,
+                "payment_method": "Example payment_method"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerFilling"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Delete multiple TankerFilling records",
+        "operationId": "delete_many_TankerFilling",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "owner_id": "Example owner_id"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerFilling/bulk": {
+      "post": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Bulk create TankerFilling records",
+        "operationId": "bulk_create_TankerFilling",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TankerFilling"
+                }
+              },
+              "example": [
+                {
+                  "owner_id": "Example owner_id",
+                  "filling_type": "full",
+                  "value": 0,
+                  "payment_method": "Example payment_method"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerFilling"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Bulk update TankerFilling records",
+        "operationId": "bulk_update_TankerFilling",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TankerFilling"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "owner_id": "Example owner_id",
+                  "filling_type": "full",
+                  "value": 0,
+                  "payment_method": "Example payment_method"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerFilling"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerFilling/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Update many TankerFilling records by query",
+        "operationId": "update_many_TankerFilling",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "owner_id": "Example owner_id"
+                },
+                "data": {
+                  "$set": {
+                    "owner_id": "Example owner_id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerFilling/{TankerFilling_id}": {
+      "get": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Get a TankerFilling record by ID",
+        "operationId": "get_TankerFilling",
+        "parameters": [
+          {
+            "name": "TankerFilling_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerFilling"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Update a TankerFilling record",
+        "operationId": "update_TankerFilling",
+        "parameters": [
+          {
+            "name": "TankerFilling_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TankerFilling"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerFilling"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Delete a TankerFilling record",
+        "operationId": "delete_TankerFilling",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "TankerFilling_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerFilling/{TankerFilling_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - TankerFilling"
+        ],
+        "summary": "Restore a deleted TankerFilling record",
+        "operationId": "restore_TankerFilling",
+        "parameters": [
+          {
+            "name": "TankerFilling_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerFilling"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Setting": {
+      "get": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "List Setting records",
+        "operationId": "list_Setting",
+        "description": "Retrieve a list of Setting records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Setting"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Create a Setting record",
+        "operationId": "create_Setting",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Setting"
+              },
+              "example": {
+                "well_name": "Example well_name",
+                "unit_price": 0
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Setting"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Delete multiple Setting records",
+        "operationId": "delete_many_Setting",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "well_name": "Example well_name"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Setting/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Bulk create Setting records",
+        "operationId": "bulk_create_Setting",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Setting"
+                }
+              },
+              "example": [
+                {
+                  "well_name": "Example well_name",
+                  "unit_price": 0
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Setting"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Bulk update Setting records",
+        "operationId": "bulk_update_Setting",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Setting"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "well_name": "Example well_name",
+                  "unit_price": 0
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Setting"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Setting/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Update many Setting records by query",
+        "operationId": "update_many_Setting",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "well_name": "Example well_name"
+                },
+                "data": {
+                  "$set": {
+                    "well_name": "Example well_name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Setting/{Setting_id}": {
+      "get": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Get a Setting record by ID",
+        "operationId": "get_Setting",
+        "parameters": [
+          {
+            "name": "Setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Setting"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Update a Setting record",
+        "operationId": "update_Setting",
+        "parameters": [
+          {
+            "name": "Setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Setting"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Setting"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Delete a Setting record",
+        "operationId": "delete_Setting",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Setting/{Setting_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Setting"
+        ],
+        "summary": "Restore a deleted Setting record",
+        "operationId": "restore_Setting",
+        "parameters": [
+          {
+            "name": "Setting_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Setting"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Subscriber": {
+      "get": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "List Subscriber records",
+        "operationId": "list_Subscriber",
+        "description": "Retrieve a list of Subscriber records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Subscriber"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Create a Subscriber record",
+        "operationId": "create_Subscriber",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subscriber"
+              },
+              "example": {
+                "subscriber_number": "Example subscriber_number",
+                "name": "Example name",
+                "phone": "Example phone"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Delete multiple Subscriber records",
+        "operationId": "delete_many_Subscriber",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "subscriber_number": "Example subscriber_number"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Subscriber/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Bulk create Subscriber records",
+        "operationId": "bulk_create_Subscriber",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Subscriber"
+                }
+              },
+              "example": [
+                {
+                  "subscriber_number": "Example subscriber_number",
+                  "name": "Example name",
+                  "phone": "Example phone"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Subscriber"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Bulk update Subscriber records",
+        "operationId": "bulk_update_Subscriber",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Subscriber"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "subscriber_number": "Example subscriber_number",
+                  "name": "Example name",
+                  "phone": "Example phone"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Subscriber"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Subscriber/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Update many Subscriber records by query",
+        "operationId": "update_many_Subscriber",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "subscriber_number": "Example subscriber_number"
+                },
+                "data": {
+                  "$set": {
+                    "subscriber_number": "Example subscriber_number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Subscriber/{Subscriber_id}": {
+      "get": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Get a Subscriber record by ID",
+        "operationId": "get_Subscriber",
+        "parameters": [
+          {
+            "name": "Subscriber_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Update a Subscriber record",
+        "operationId": "update_Subscriber",
+        "parameters": [
+          {
+            "name": "Subscriber_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subscriber"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Delete a Subscriber record",
+        "operationId": "delete_Subscriber",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Subscriber_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Subscriber/{Subscriber_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Subscriber"
+        ],
+        "summary": "Restore a deleted Subscriber record",
+        "operationId": "restore_Subscriber",
+        "parameters": [
+          {
+            "name": "Subscriber_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscriber"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Payment": {
+      "get": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "List Payment records",
+        "operationId": "list_Payment",
+        "description": "Retrieve a list of Payment records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Create a Payment record",
+        "operationId": "create_Payment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              },
+              "example": {
+                "receipt_number": "Example receipt_number",
+                "subscriber_id": "Example subscriber_id",
+                "amount": 0,
+                "payment_method": "Example payment_method"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Delete multiple Payment records",
+        "operationId": "delete_many_Payment",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "receipt_number": "Example receipt_number"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Payment/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Bulk create Payment records",
+        "operationId": "bulk_create_Payment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              },
+              "example": [
+                {
+                  "receipt_number": "Example receipt_number",
+                  "subscriber_id": "Example subscriber_id",
+                  "amount": 0,
+                  "payment_method": "Example payment_method"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Bulk update Payment records",
+        "operationId": "bulk_update_Payment",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "receipt_number": "Example receipt_number",
+                  "subscriber_id": "Example subscriber_id",
+                  "amount": 0,
+                  "payment_method": "Example payment_method"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Payment/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Update many Payment records by query",
+        "operationId": "update_many_Payment",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "receipt_number": "Example receipt_number"
+                },
+                "data": {
+                  "$set": {
+                    "receipt_number": "Example receipt_number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Payment/{Payment_id}": {
+      "get": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Get a Payment record by ID",
+        "operationId": "get_Payment",
+        "parameters": [
+          {
+            "name": "Payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Update a Payment record",
+        "operationId": "update_Payment",
+        "parameters": [
+          {
+            "name": "Payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Delete a Payment record",
+        "operationId": "delete_Payment",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Payment/{Payment_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Payment"
+        ],
+        "summary": "Restore a deleted Payment record",
+        "operationId": "restore_Payment",
+        "parameters": [
+          {
+            "name": "Payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/NotificationLog": {
+      "get": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "List NotificationLog records",
+        "operationId": "list_NotificationLog",
+        "description": "Retrieve a list of NotificationLog records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Create a NotificationLog record",
+        "operationId": "create_NotificationLog",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationLog"
+              },
+              "example": {
+                "channel": "whatsapp",
+                "template": "Example template",
+                "status": "sent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationLog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Delete multiple NotificationLog records",
+        "operationId": "delete_many_NotificationLog",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "channel": "whatsapp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/NotificationLog/bulk": {
+      "post": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Bulk create NotificationLog records",
+        "operationId": "bulk_create_NotificationLog",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NotificationLog"
+                }
+              },
+              "example": [
+                {
+                  "channel": "whatsapp",
+                  "template": "Example template",
+                  "status": "sent"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Bulk update NotificationLog records",
+        "operationId": "bulk_update_NotificationLog",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NotificationLog"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "channel": "whatsapp",
+                  "template": "Example template",
+                  "status": "sent"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationLog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/NotificationLog/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Update many NotificationLog records by query",
+        "operationId": "update_many_NotificationLog",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "channel": "whatsapp"
+                },
+                "data": {
+                  "$set": {
+                    "channel": "whatsapp"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/NotificationLog/{NotificationLog_id}": {
+      "get": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Get a NotificationLog record by ID",
+        "operationId": "get_NotificationLog",
+        "parameters": [
+          {
+            "name": "NotificationLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationLog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Update a NotificationLog record",
+        "operationId": "update_NotificationLog",
+        "parameters": [
+          {
+            "name": "NotificationLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationLog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Delete a NotificationLog record",
+        "operationId": "delete_NotificationLog",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "NotificationLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/NotificationLog/{NotificationLog_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - NotificationLog"
+        ],
+        "summary": "Restore a deleted NotificationLog record",
+        "operationId": "restore_NotificationLog",
+        "parameters": [
+          {
+            "name": "NotificationLog_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationLog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Reading": {
+      "get": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "List Reading records",
+        "operationId": "list_Reading",
+        "description": "Retrieve a list of Reading records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reading"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Create a Reading record",
+        "operationId": "create_Reading",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reading"
+              },
+              "example": {
+                "meter_id": "Example meter_id",
+                "subscriber_id": "Example subscriber_id",
+                "billing_period": "Example billing_period",
+                "current_reading": 0
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reading"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Delete multiple Reading records",
+        "operationId": "delete_many_Reading",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "meter_id": "Example meter_id"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Reading/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Bulk create Reading records",
+        "operationId": "bulk_create_Reading",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Reading"
+                }
+              },
+              "example": [
+                {
+                  "meter_id": "Example meter_id",
+                  "subscriber_id": "Example subscriber_id",
+                  "billing_period": "Example billing_period",
+                  "current_reading": 0
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reading"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Bulk update Reading records",
+        "operationId": "bulk_update_Reading",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Reading"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "meter_id": "Example meter_id",
+                  "subscriber_id": "Example subscriber_id",
+                  "billing_period": "Example billing_period",
+                  "current_reading": 0
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reading"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Reading/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Update many Reading records by query",
+        "operationId": "update_many_Reading",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "meter_id": "Example meter_id"
+                },
+                "data": {
+                  "$set": {
+                    "meter_id": "Example meter_id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Reading/{Reading_id}": {
+      "get": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Get a Reading record by ID",
+        "operationId": "get_Reading",
+        "parameters": [
+          {
+            "name": "Reading_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reading"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Update a Reading record",
+        "operationId": "update_Reading",
+        "parameters": [
+          {
+            "name": "Reading_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reading"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reading"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Delete a Reading record",
+        "operationId": "delete_Reading",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Reading_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Reading/{Reading_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Reading"
+        ],
+        "summary": "Restore a deleted Reading record",
+        "operationId": "restore_Reading",
+        "parameters": [
+          {
+            "name": "Reading_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reading"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Invoice": {
+      "get": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "List Invoice records",
+        "operationId": "list_Invoice",
+        "description": "Retrieve a list of Invoice records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Create a Invoice record",
+        "operationId": "create_Invoice",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Invoice"
+              },
+              "example": {
+                "invoice_number": "Example invoice_number",
+                "subscriber_id": "Example subscriber_id",
+                "billing_period": "Example billing_period",
+                "consumption": 0,
+                "unit_price": 0,
+                "total_amount": 0
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Delete multiple Invoice records",
+        "operationId": "delete_many_Invoice",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "invoice_number": "Example invoice_number"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Invoice/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Bulk create Invoice records",
+        "operationId": "bulk_create_Invoice",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              },
+              "example": [
+                {
+                  "invoice_number": "Example invoice_number",
+                  "subscriber_id": "Example subscriber_id",
+                  "billing_period": "Example billing_period",
+                  "consumption": 0,
+                  "unit_price": 0,
+                  "total_amount": 0
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Bulk update Invoice records",
+        "operationId": "bulk_update_Invoice",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "invoice_number": "Example invoice_number",
+                  "subscriber_id": "Example subscriber_id",
+                  "billing_period": "Example billing_period",
+                  "consumption": 0,
+                  "unit_price": 0,
+                  "total_amount": 0
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Invoice/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Update many Invoice records by query",
+        "operationId": "update_many_Invoice",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "invoice_number": "Example invoice_number"
+                },
+                "data": {
+                  "$set": {
+                    "invoice_number": "Example invoice_number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Invoice/{Invoice_id}": {
+      "get": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Get a Invoice record by ID",
+        "operationId": "get_Invoice",
+        "parameters": [
+          {
+            "name": "Invoice_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Update a Invoice record",
+        "operationId": "update_Invoice",
+        "parameters": [
+          {
+            "name": "Invoice_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Invoice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Delete a Invoice record",
+        "operationId": "delete_Invoice",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Invoice_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Invoice/{Invoice_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Invoice"
+        ],
+        "summary": "Restore a deleted Invoice record",
+        "operationId": "restore_Invoice",
+        "parameters": [
+          {
+            "name": "Invoice_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerPayment": {
+      "get": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "List TankerPayment records",
+        "operationId": "list_TankerPayment",
+        "description": "Retrieve a list of TankerPayment records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerPayment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Create a TankerPayment record",
+        "operationId": "create_TankerPayment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TankerPayment"
+              },
+              "example": {
+                "receipt_number": "Example receipt_number",
+                "owner_id": "Example owner_id",
+                "amount": 0,
+                "payment_method": "Example payment_method"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerPayment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Delete multiple TankerPayment records",
+        "operationId": "delete_many_TankerPayment",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "receipt_number": "Example receipt_number"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerPayment/bulk": {
+      "post": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Bulk create TankerPayment records",
+        "operationId": "bulk_create_TankerPayment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TankerPayment"
+                }
+              },
+              "example": [
+                {
+                  "receipt_number": "Example receipt_number",
+                  "owner_id": "Example owner_id",
+                  "amount": 0,
+                  "payment_method": "Example payment_method"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerPayment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Bulk update TankerPayment records",
+        "operationId": "bulk_update_TankerPayment",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TankerPayment"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "receipt_number": "Example receipt_number",
+                  "owner_id": "Example owner_id",
+                  "amount": 0,
+                  "payment_method": "Example payment_method"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerPayment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerPayment/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Update many TankerPayment records by query",
+        "operationId": "update_many_TankerPayment",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "receipt_number": "Example receipt_number"
+                },
+                "data": {
+                  "$set": {
+                    "receipt_number": "Example receipt_number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerPayment/{TankerPayment_id}": {
+      "get": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Get a TankerPayment record by ID",
+        "operationId": "get_TankerPayment",
+        "parameters": [
+          {
+            "name": "TankerPayment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerPayment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Update a TankerPayment record",
+        "operationId": "update_TankerPayment",
+        "parameters": [
+          {
+            "name": "TankerPayment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TankerPayment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerPayment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Delete a TankerPayment record",
+        "operationId": "delete_TankerPayment",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "TankerPayment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerPayment/{TankerPayment_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - TankerPayment"
+        ],
+        "summary": "Restore a deleted TankerPayment record",
+        "operationId": "restore_TankerPayment",
+        "parameters": [
+          {
+            "name": "TankerPayment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerPayment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerOwner": {
+      "get": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "List TankerOwner records",
+        "operationId": "list_TankerOwner",
+        "description": "Retrieve a list of TankerOwner records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerOwner"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Create a TankerOwner record",
+        "operationId": "create_TankerOwner",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TankerOwner"
+              },
+              "example": {
+                "name": "Example name",
+                "phone": "Example phone",
+                "tanker_number": "Example tanker_number"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerOwner"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Delete multiple TankerOwner records",
+        "operationId": "delete_many_TankerOwner",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "name": "Example name"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerOwner/bulk": {
+      "post": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Bulk create TankerOwner records",
+        "operationId": "bulk_create_TankerOwner",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TankerOwner"
+                }
+              },
+              "example": [
+                {
+                  "name": "Example name",
+                  "phone": "Example phone",
+                  "tanker_number": "Example tanker_number"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerOwner"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Bulk update TankerOwner records",
+        "operationId": "bulk_update_TankerOwner",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TankerOwner"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "name": "Example name",
+                  "phone": "Example phone",
+                  "tanker_number": "Example tanker_number"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TankerOwner"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerOwner/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Update many TankerOwner records by query",
+        "operationId": "update_many_TankerOwner",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "name": "Example name"
+                },
+                "data": {
+                  "$set": {
+                    "name": "Example name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerOwner/{TankerOwner_id}": {
+      "get": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Get a TankerOwner record by ID",
+        "operationId": "get_TankerOwner",
+        "parameters": [
+          {
+            "name": "TankerOwner_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerOwner"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Update a TankerOwner record",
+        "operationId": "update_TankerOwner",
+        "parameters": [
+          {
+            "name": "TankerOwner_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TankerOwner"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerOwner"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Delete a TankerOwner record",
+        "operationId": "delete_TankerOwner",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "TankerOwner_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TankerOwner/{TankerOwner_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - TankerOwner"
+        ],
+        "summary": "Restore a deleted TankerOwner record",
+        "operationId": "restore_TankerOwner",
+        "parameters": [
+          {
+            "name": "TankerOwner_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TankerOwner"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Meter": {
+      "get": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "List Meter records",
+        "operationId": "list_Meter",
+        "description": "Retrieve a list of Meter records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Meter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Create a Meter record",
+        "operationId": "create_Meter",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Meter"
+              },
+              "example": {
+                "meter_number": "Example meter_number",
+                "subscriber_id": "Example subscriber_id"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Meter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Delete multiple Meter records",
+        "operationId": "delete_many_Meter",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "meter_number": "Example meter_number"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Meter/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Bulk create Meter records",
+        "operationId": "bulk_create_Meter",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Meter"
+                }
+              },
+              "example": [
+                {
+                  "meter_number": "Example meter_number",
+                  "subscriber_id": "Example subscriber_id"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Meter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Bulk update Meter records",
+        "operationId": "bulk_update_Meter",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Meter"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "meter_number": "Example meter_number",
+                  "subscriber_id": "Example subscriber_id"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Meter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Meter/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Update many Meter records by query",
+        "operationId": "update_many_Meter",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "meter_number": "Example meter_number"
+                },
+                "data": {
+                  "$set": {
+                    "meter_number": "Example meter_number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Meter/{Meter_id}": {
+      "get": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Get a Meter record by ID",
+        "operationId": "get_Meter",
+        "parameters": [
+          {
+            "name": "Meter_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Meter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Update a Meter record",
+        "operationId": "update_Meter",
+        "parameters": [
+          {
+            "name": "Meter_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Meter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Meter"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Delete a Meter record",
+        "operationId": "delete_Meter",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Meter_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Meter/{Meter_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Meter"
+        ],
+        "summary": "Restore a deleted Meter record",
+        "operationId": "restore_Meter",
+        "parameters": [
+          {
+            "name": "Meter_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Meter"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/User": {
+      "get": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "List User records",
+        "operationId": "list_User",
+        "description": "Retrieve a list of User records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Create a User record",
+        "operationId": "create_User",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "email": "Example email",
+                "full_name": "Example full_name",
+                "permissions": [],
+                "phone": "Example phone"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/User/{User_id}": {
+      "get": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Get a User record by ID",
+        "operationId": "get_User",
+        "parameters": [
+          {
+            "name": "User_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Update a User record",
+        "operationId": "update_User",
+        "parameters": [
+          {
+            "name": "User_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Delete a User record",
+        "operationId": "delete_User",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "User_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/functions/cancelPayment": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'cancelPayment'",
+        "operationId": "invoke_function_cancelPayment",
+        "description": "Calls the deployed backend function 'cancelPayment'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    },
+    "/functions/recordReading": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'recordReading'",
+        "operationId": "invoke_function_recordReading",
+        "description": "Calls the deployed backend function 'recordReading'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    },
+    "/functions/collectTankerPayment": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'collectTankerPayment'",
+        "operationId": "invoke_function_collectTankerPayment",
+        "description": "Calls the deployed backend function 'collectTankerPayment'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    },
+    "/functions/createTankerFilling": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'createTankerFilling'",
+        "operationId": "invoke_function_createTankerFilling",
+        "description": "Calls the deployed backend function 'createTankerFilling'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    },
+    "/functions/issueInvoices": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'issueInvoices'",
+        "operationId": "invoke_function_issueInvoices",
+        "description": "Calls the deployed backend function 'issueInvoices'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    },
+    "/functions/collectPayment": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'collectPayment'",
+        "operationId": "invoke_function_collectPayment",
+        "description": "Calls the deployed backend function 'collectPayment'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    },
+    "/functions/deleteSubscriber": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'deleteSubscriber'",
+        "operationId": "invoke_function_deleteSubscriber",
+        "description": "Calls the deployed backend function 'deleteSubscriber'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    },
+    "/functions/getEmailByPhone": {
+      "post": {
+        "tags": [
+          "Backend Functions"
+        ],
+        "summary": "Invoke 'getEmailByPhone'",
+        "operationId": "invoke_function_getEmailByPhone",
+        "description": "Calls the deployed backend function 'getEmailByPhone'. Accepts any HTTP method (GET, POST, PUT, DELETE, etc.) — the method and payload are forwarded to the function. POST with a JSON body is shown here as the most common pattern.\n\n**Authentication:** Backend functions do NOT use the `api_key` header. All request headers (including `Authorization`) are forwarded to the function as-is — the function code handles its own authentication.",
+        "security": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Payload to pass to the function"
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Function response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Function not found or not deployed"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "api_key",
+        "description": "Your API key. Obtain it from your user profile or via `User.me()` in the app SDK."
+      }
+    },
+    "schemas": {
+      "AuditLog": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "المستخدم"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "اسم المستخدم"
+          },
+          "action": {
+            "type": "string",
+            "title": "العملية"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "نوع السجل"
+          },
+          "entity_id": {
+            "type": "string",
+            "title": "السجل"
+          },
+          "entity_label": {
+            "type": "string",
+            "title": "وصف السجل"
+          },
+          "old_value": {
+            "type": "string",
+            "title": "القيمة القديمة"
+          },
+          "new_value": {
+            "type": "string",
+            "title": "القيمة الجديدة"
+          },
+          "reason": {
+            "type": "string",
+            "title": "السبب"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "user_name",
+          "action"
+        ],
+        "description": "AuditLog entity"
+      },
+      "TankerFilling": {
+        "type": "object",
+        "properties": {
+          "owner_id": {
+            "type": "string",
+            "title": "صاحب الوايت"
+          },
+          "owner_name": {
+            "type": "string",
+            "title": "اسم صاحب الوايت"
+          },
+          "tanker_number": {
+            "type": "string",
+            "title": "رقم الناقلة"
+          },
+          "filling_type": {
+            "type": "string",
+            "enum": [
+              "full",
+              "half",
+              "custom"
+            ],
+            "title": "نوع التعبئة",
+            "default": "full"
+          },
+          "custom_quantity": {
+            "type": "number",
+            "title": "كمية يدوية"
+          },
+          "value": {
+            "type": "number",
+            "title": "قيمة التعبئة"
+          },
+          "payment_method": {
+            "type": "string",
+            "title": "طريقة الدفع"
+          },
+          "paid_amount": {
+            "type": "number",
+            "title": "المدفوع",
+            "default": 0
+          },
+          "remaining": {
+            "type": "number",
+            "title": "المتبقي",
+            "default": 0
+          },
+          "invoice_number": {
+            "type": "string",
+            "title": "رقم الفاتورة"
+          },
+          "filled_by_name": {
+            "type": "string",
+            "title": "المستخدم"
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "owner_id",
+          "filling_type",
+          "value",
+          "payment_method"
+        ],
+        "description": "TankerFilling entity"
+      },
+      "Setting": {
+        "type": "object",
+        "properties": {
+          "system_name": {
+            "type": "string",
+            "title": "اسم النظام",
+            "default": "نظام إدارة البئر"
+          },
+          "well_name": {
+            "type": "string",
+            "title": "اسم البئر",
+            "default": "بئر محمد أحمد مطير"
+          },
+          "unit_price": {
+            "type": "number",
+            "title": "سعر الوحدة",
+            "default": 700
+          },
+          "payment_methods": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "طرق الدفع",
+            "default": [
+              "نقدًا",
+              "تحويل",
+              "آجل"
+            ]
+          },
+          "invoice_prefix": {
+            "type": "string",
+            "title": "بادئة الفواتير",
+            "default": "INV"
+          },
+          "receipt_prefix": {
+            "type": "string",
+            "title": "بادئة الإيصالات",
+            "default": "PAY"
+          },
+          "tanker_invoice_prefix": {
+            "type": "string",
+            "title": "بادئة فواتير الوايت",
+            "default": "TINV"
+          },
+          "tanker_receipt_prefix": {
+            "type": "string",
+            "title": "بادئة إيصالات الوايت",
+            "default": "TPAY"
+          },
+          "abnormal_consumption": {
+            "type": "number",
+            "title": "حد الاستهلاك غير الطبيعي",
+            "default": 300
+          },
+          "due_days": {
+            "type": "number",
+            "title": "أيام الاستحقاق",
+            "default": 15
+          },
+          "thermal_width": {
+            "type": "string",
+            "enum": [
+              "58",
+              "80"
+            ],
+            "title": "عرض الطباعة الحرارية",
+            "default": "80"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "well_name",
+          "unit_price"
+        ],
+        "description": "Setting entity"
+      },
+      "Subscriber": {
+        "type": "object",
+        "properties": {
+          "subscriber_number": {
+            "type": "string",
+            "title": "رقم المشترك"
+          },
+          "name": {
+            "type": "string",
+            "title": "الاسم"
+          },
+          "phone": {
+            "type": "string",
+            "title": "الهاتف"
+          },
+          "address": {
+            "type": "string",
+            "title": "العنوان"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "suspended",
+              "temp_stopped",
+              "transferred",
+              "cancelled"
+            ],
+            "title": "حالة الاشتراك",
+            "default": "active"
+          },
+          "subscription_date": {
+            "type": "string",
+            "title": "تاريخ الاشتراك",
+            "format": "date"
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "subscriber_number",
+          "name",
+          "phone"
+        ],
+        "description": "Subscriber entity"
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "receipt_number": {
+            "type": "string",
+            "title": "رقم الإيصال"
+          },
+          "subscriber_id": {
+            "type": "string",
+            "title": "المشترك"
+          },
+          "subscriber_name": {
+            "type": "string",
+            "title": "اسم المشترك"
+          },
+          "amount": {
+            "type": "number",
+            "title": "المبلغ"
+          },
+          "payment_method": {
+            "type": "string",
+            "title": "طريقة الدفع"
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "invoice_id": {
+                  "type": "string"
+                },
+                "invoice_number": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "number"
+                }
+              }
+            },
+            "title": "تخصيص الدفع"
+          },
+          "remaining_after": {
+            "type": "number",
+            "title": "المتبقي بعد الدفع"
+          },
+          "collected_by_name": {
+            "type": "string",
+            "title": "المحصل"
+          },
+          "cancelled": {
+            "type": "boolean",
+            "title": "ملغى",
+            "default": false
+          },
+          "cancel_reason": {
+            "type": "string",
+            "title": "سبب الإلغاء"
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "receipt_number",
+          "subscriber_id",
+          "amount",
+          "payment_method"
+        ],
+        "description": "Payment entity"
+      },
+      "NotificationLog": {
+        "type": "object",
+        "properties": {
+          "subscriber_id": {
+            "type": "string",
+            "title": "المشترك"
+          },
+          "owner_id": {
+            "type": "string",
+            "title": "صاحب الوايت"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "whatsapp",
+              "sms"
+            ],
+            "title": "القناة"
+          },
+          "template": {
+            "type": "string",
+            "title": "القالب"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "sent",
+              "failed",
+              "not_sent"
+            ],
+            "title": "حالة الإرسال"
+          },
+          "message": {
+            "type": "string",
+            "title": "النص"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "المستخدم"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "channel",
+          "template",
+          "status"
+        ],
+        "description": "NotificationLog entity"
+      },
+      "Reading": {
+        "type": "object",
+        "properties": {
+          "meter_id": {
+            "type": "string",
+            "title": "العداد"
+          },
+          "meter_number": {
+            "type": "string",
+            "title": "رقم العداد"
+          },
+          "subscriber_id": {
+            "type": "string",
+            "title": "المشترك"
+          },
+          "subscriber_name": {
+            "type": "string",
+            "title": "اسم المشترك"
+          },
+          "billing_period": {
+            "type": "string",
+            "title": "الفترة"
+          },
+          "previous_reading": {
+            "type": "number",
+            "title": "القراءة السابقة"
+          },
+          "current_reading": {
+            "type": "number",
+            "title": "القراءة الحالية"
+          },
+          "consumption": {
+            "type": "number",
+            "title": "الاستهلاك"
+          },
+          "is_abnormal": {
+            "type": "boolean",
+            "title": "استهلاك غير طبيعي",
+            "default": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "recorded",
+              "edited",
+              "invoiced"
+            ],
+            "title": "الحالة",
+            "default": "recorded"
+          },
+          "invoice_id": {
+            "type": "string",
+            "title": "الفاتورة"
+          },
+          "recorded_by_name": {
+            "type": "string",
+            "title": "المسجل"
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "meter_id",
+          "subscriber_id",
+          "billing_period",
+          "current_reading"
+        ],
+        "description": "Reading entity"
+      },
+      "Invoice": {
+        "type": "object",
+        "properties": {
+          "invoice_number": {
+            "type": "string",
+            "title": "رقم الفاتورة"
+          },
+          "subscriber_id": {
+            "type": "string",
+            "title": "المشترك"
+          },
+          "subscriber_name": {
+            "type": "string",
+            "title": "اسم المشترك"
+          },
+          "reading_id": {
+            "type": "string",
+            "title": "القراءة"
+          },
+          "billing_period": {
+            "type": "string",
+            "title": "الفترة"
+          },
+          "previous_reading": {
+            "type": "number",
+            "title": "القراءة السابقة"
+          },
+          "current_reading": {
+            "type": "number",
+            "title": "القراءة الحالية"
+          },
+          "consumption": {
+            "type": "number",
+            "title": "الاستهلاك"
+          },
+          "unit_price": {
+            "type": "number",
+            "title": "سعر الوحدة"
+          },
+          "total_amount": {
+            "type": "number",
+            "title": "قيمة الفاتورة"
+          },
+          "paid_amount": {
+            "type": "number",
+            "title": "المدفوع",
+            "default": 0
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "unpaid",
+              "partial",
+              "paid",
+              "overdue",
+              "cancelled"
+            ],
+            "title": "الحالة",
+            "default": "unpaid"
+          },
+          "due_date": {
+            "type": "string",
+            "title": "تاريخ الاستحقاق",
+            "format": "date"
+          },
+          "issued_by_name": {
+            "type": "string",
+            "title": "المُصدر"
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "invoice_number",
+          "subscriber_id",
+          "billing_period",
+          "consumption",
+          "unit_price",
+          "total_amount"
+        ],
+        "description": "Invoice entity"
+      },
+      "TankerPayment": {
+        "type": "object",
+        "properties": {
+          "receipt_number": {
+            "type": "string",
+            "title": "رقم الإيصال"
+          },
+          "owner_id": {
+            "type": "string",
+            "title": "صاحب الوايت"
+          },
+          "owner_name": {
+            "type": "string",
+            "title": "اسم صاحب الوايت"
+          },
+          "amount": {
+            "type": "number",
+            "title": "المبلغ"
+          },
+          "payment_method": {
+            "type": "string",
+            "title": "طريقة الدفع"
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filling_id": {
+                  "type": "string"
+                },
+                "invoice_number": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "number"
+                }
+              }
+            },
+            "title": "تخصيص الدفع"
+          },
+          "remaining_after": {
+            "type": "number",
+            "title": "المتبقي بعد الدفع"
+          },
+          "collected_by_name": {
+            "type": "string",
+            "title": "المحصل"
+          },
+          "cancelled": {
+            "type": "boolean",
+            "title": "ملغى",
+            "default": false
+          },
+          "cancel_reason": {
+            "type": "string",
+            "title": "سبب الإلغاء"
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "receipt_number",
+          "owner_id",
+          "amount",
+          "payment_method"
+        ],
+        "description": "TankerPayment entity"
+      },
+      "TankerOwner": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "الاسم"
+          },
+          "phone": {
+            "type": "string",
+            "title": "الهاتف"
+          },
+          "tanker_number": {
+            "type": "string",
+            "title": "رقم الناقلة"
+          },
+          "capacity": {
+            "type": "number",
+            "title": "سعة الناقلة"
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "name",
+          "phone",
+          "tanker_number"
+        ],
+        "description": "TankerOwner entity"
+      },
+      "Meter": {
+        "type": "object",
+        "properties": {
+          "meter_number": {
+            "type": "string",
+            "title": "رقم العداد"
+          },
+          "meter_type": {
+            "type": "string",
+            "title": "نوع العداد"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "working",
+              "stopped",
+              "damaged",
+              "replaced",
+              "disabled"
+            ],
+            "title": "حالة العداد",
+            "default": "working"
+          },
+          "subscriber_id": {
+            "type": "string",
+            "title": "المشترك"
+          },
+          "subscriber_name": {
+            "type": "string",
+            "title": "اسم المشترك"
+          },
+          "install_date": {
+            "type": "string",
+            "title": "تاريخ التركيب",
+            "format": "date"
+          },
+          "last_reading": {
+            "type": "number",
+            "title": "آخر قراءة",
+            "default": 0
+          },
+          "is_current": {
+            "type": "boolean",
+            "title": "العداد الحالي",
+            "default": true
+          },
+          "notes": {
+            "type": "string",
+            "title": "ملاحظات"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "meter_number",
+          "subscriber_id"
+        ],
+        "description": "Meter entity"
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ],
+            "description": "The role of the user in the app"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the user"
+          },
+          "full_name": {
+            "type": "string",
+            "description": "The full name of the user"
+          },
+          "app_role": {
+            "type": "string",
+            "enum": [
+              "manager",
+              "collector",
+              "reader"
+            ],
+            "title": "الدور الوظيفي",
+            "default": "reader"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "صلاحيات مخصصة"
+          },
+          "phone": {
+            "type": "string",
+            "title": "رقم الهاتف"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "email",
+          "full_name",
+          "permissions",
+          "phone"
+        ],
+        "description": "User entity"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Entities - AuditLog",
+      "description": "CRUD operations for AuditLog records"
+    },
+    {
+      "name": "Entities - TankerFilling",
+      "description": "CRUD operations for TankerFilling records"
+    },
+    {
+      "name": "Entities - Setting",
+      "description": "CRUD operations for Setting records"
+    },
+    {
+      "name": "Entities - Subscriber",
+      "description": "CRUD operations for Subscriber records"
+    },
+    {
+      "name": "Entities - Payment",
+      "description": "CRUD operations for Payment records"
+    },
+    {
+      "name": "Entities - NotificationLog",
+      "description": "CRUD operations for NotificationLog records"
+    },
+    {
+      "name": "Entities - Reading",
+      "description": "CRUD operations for Reading records"
+    },
+    {
+      "name": "Entities - Invoice",
+      "description": "CRUD operations for Invoice records"
+    },
+    {
+      "name": "Entities - TankerPayment",
+      "description": "CRUD operations for TankerPayment records"
+    },
+    {
+      "name": "Entities - TankerOwner",
+      "description": "CRUD operations for TankerOwner records"
+    },
+    {
+      "name": "Entities - Meter",
+      "description": "CRUD operations for Meter records"
+    },
+    {
+      "name": "Entities - User",
+      "description": "CRUD operations for User records"
+    },
+    {
+      "name": "Backend Functions",
+      "description": "Invoke deployed backend functions"
+    }
+  ]
+}
