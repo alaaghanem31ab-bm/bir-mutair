@@ -1,0 +1,19 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "description": "Supabase project anon/publishable key (client-side). Get it from the Supabase dashboard → Project Settings → API → anon public key. Project ref: tvhzwflwytotydhkakrn.",
+      "requiredAtBoot": true,
+      "generatedForDevelopment": true
+    },
+    {
+      "name": "SUPABASE_SERVICE_ROLE_KEY",
+      "description": "Supabase service-role key (server-side only, optional for this dev preview). Get it from the Supabase dashboard → Project Settings → API → service_role key. Project ref: tvhzwflwytotydhkakrn.",
+      "requiredAtBoot": false,
+      "generatedForDevelopment": false
+    }
+  ]
+}
